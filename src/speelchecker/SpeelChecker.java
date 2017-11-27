@@ -21,7 +21,7 @@ public class SpeelChecker {
     public static void main(String[] args) {
         ManageDictionary dictionary = new ManageDictionary();
 
-        String word = "caas";
+        String word = "occi";
 
         if (dictionary.wordExist(word)) {
             System.out.println(dictionary);
