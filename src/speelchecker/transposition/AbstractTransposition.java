@@ -22,7 +22,7 @@ public abstract class AbstractTransposition implements Transposition {
      * @param word To generate transposition
      */
     public AbstractTransposition(String word) {
-        this.generate(word);
+        this.generate(word.toUpperCase());
     }
 
     /**
