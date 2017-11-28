@@ -5,8 +5,14 @@
  */
 package speelchecker;
 
+import java.awt.FlowLayout;
 import java.io.IOException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import speelchecker.dictionary.ManageDictionary;
+import speelchecker.gui.LauncherJFrame;
 import speelchecker.transposition.WordTransposition;
 
 /**
@@ -29,6 +35,8 @@ public class SpeelChecker {
             WordTransposition transposition = new WordTransposition(word);
             System.out.println(transposition);
         }
+
+        new LauncherJFrame();
     }
 
 }
