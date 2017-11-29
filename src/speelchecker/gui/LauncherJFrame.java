@@ -65,6 +65,7 @@ public class LauncherJFrame extends JFrame {
 
         JLabel inputLabel = new JLabel("Digite abaixo para validar a ortografia");
         inputLabel.setBorder(new EmptyBorder(0, 0, 15, 0));
+
         inputTextArea.setLineWrap(true);
         inputTextArea.setWrapStyleWord(true);
         inputTextArea.setFocusable(true);
@@ -76,11 +77,9 @@ public class LauncherJFrame extends JFrame {
         outputTextArea.setLineWrap(true);
         outputTextArea.setWrapStyleWord(true);
         outputTextArea.setEditable(false);
-
         outputTextArea.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         JScrollPane outputScroll = new JScrollPane(outputTextArea);
-        outputScroll.setMinimumSize(new Dimension(300, 300));
         outputScroll.setBorder(new EmptyBorder(0, 10, 10, 0));
 
         contentPane.add(inputLabel, BorderLayout.PAGE_START);
