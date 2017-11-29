@@ -5,8 +5,6 @@
  */
 package speelchecker.dictionary;
 
-import java.io.IOException;
-
 /**
  *
  * @author deividnetwork

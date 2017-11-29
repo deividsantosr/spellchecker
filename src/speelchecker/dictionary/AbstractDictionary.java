@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import speelchecker.transposition.WordTransposition;
 
 /**
  *
@@ -56,7 +55,7 @@ public abstract class AbstractDictionary implements Dictionary {
      */
     @Override
     public boolean wordExist(String word) {
-        return fileContent.contains(word.toUpperCase() + "\n");
+        return fileContent.contains("\n" + word.toUpperCase() + "\n");
     }
 
     /**

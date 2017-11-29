@@ -6,20 +6,18 @@
 package speelchecker.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import speelchecker.dictionary.ManageDictionary;
+import speelchecker.transposition.WordTransposition;
 
 /**
  *
@@ -28,6 +26,14 @@ import javax.swing.border.EmptyBorder;
 public class LauncherJFrame extends JFrame {
 
     JPanel contentPane = new JPanel();
+
+    JTextArea inputTextArea = new JTextArea();
+
+    JTextArea outputTextArea = new JTextArea();
+
+    JButton button = new JButton("Validar texto");
+
+    ManageDictionary dictionary = new ManageDictionary();
 
     public LauncherJFrame() {
         super("Corretor Ortográfico");
@@ -41,6 +47,14 @@ public class LauncherJFrame extends JFrame {
         this.setContentPane(getContentPane());
         this.setVisible(true);
         this.setResizable(false);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                correctSpelling();
+            }
+        });
+
     }
 
     @Override
@@ -50,8 +64,6 @@ public class LauncherJFrame extends JFrame {
 
         JLabel inputLabel = new JLabel("Digite abaixo para validar a ortografia");
         inputLabel.setBorder(new EmptyBorder(0, 0, 15, 0));
-
-        JTextArea inputTextArea = new JTextArea();
         inputTextArea.setLineWrap(true);
         inputTextArea.setWrapStyleWord(true);
         inputTextArea.setFocusable(true);
@@ -60,16 +72,15 @@ public class LauncherJFrame extends JFrame {
         JScrollPane inputScroll = new JScrollPane(inputTextArea);
         inputScroll.setBorder(new EmptyBorder(0, 0, 10, 0));
 
-        JTextArea outputTextArea = new JTextArea();
         outputTextArea.setLineWrap(true);
         outputTextArea.setWrapStyleWord(true);
         outputTextArea.setEditable(false);
+
         outputTextArea.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         JScrollPane outputScroll = new JScrollPane(outputTextArea);
+        outputScroll.setMinimumSize(new Dimension(300, 300));
         outputScroll.setBorder(new EmptyBorder(0, 10, 10, 0));
-
-        JButton button = new JButton("Validar texto");
 
         contentPane.add(inputLabel, BorderLayout.PAGE_START);
         contentPane.add(inputScroll, BorderLayout.CENTER);
@@ -77,5 +88,41 @@ public class LauncherJFrame extends JFrame {
         contentPane.add(button, BorderLayout.PAGE_END);
 
         return contentPane;
+    }
+
+    /**
+     * Spelling correction spelling
+     */
+    protected void correctSpelling() {
+        String input = inputTextArea.getText();
+        String[] inputList = input.split(" ");
+
+        outputTextArea.setText(null);
+
+        for (String word : inputList) {
+            if (!dictionary.wordExist(word)) {
+                WordTransposition transposition = new WordTransposition(word);
+
+                for (String wordT : transposition.fetchWords()) {
+                    if (dictionary.wordExist(wordT)) {
+                        if (outputTextArea.getText().isEmpty()) {
+                            outputTextArea.setText(word + " (" + wordT.toLowerCase() + ")");
+                        } else {
+                            outputTextArea.setText(outputTextArea.getText() + "\n" + word + " (" + wordT.toLowerCase() + ")");
+                        }
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (inputTextArea.getText().isEmpty()) {
+            outputTextArea.setText("Texto vazio!");
+        } else {
+            if (outputTextArea.getText().isEmpty()) {
+                outputTextArea.setText("Nenhuma transposição correspondente no dicionário");
+            }
+        }
     }
 }
