@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package speelchecker;
+package spellchecker;
 
-import speelchecker.gui.LauncherJFrame;
+import spellchecker.gui.LauncherJFrame;
 
 /**
  *
  * @author deividnetwork
  */
-public class SpeelChecker {
+public class SpellChecker {
 
     /**
      * @param args the command line arguments

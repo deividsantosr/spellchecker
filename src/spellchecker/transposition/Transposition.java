@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package speelchecker.dictionary;
+package spellchecker.transposition;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author deividnetwork
  */
-public class ManageDictionary extends AbstractDictionary {
+public interface Transposition {
 
-    public ManageDictionary() {
-        super();
-    }
-
+    public ArrayList<String> fetchWords();
 }

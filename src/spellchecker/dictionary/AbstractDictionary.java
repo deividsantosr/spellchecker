@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package speelchecker.dictionary;
+package spellchecker.dictionary;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractDictionary implements Dictionary {
 
-    private static final String FILE_PATH = "src/speelchecker/dictionary/words";
+    private static final String FILE_PATH = "src/spellchecker/dictionary/words";
 
     private String fileContent;
 
