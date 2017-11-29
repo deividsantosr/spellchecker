@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.Normalizer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -91,6 +92,19 @@ public class LauncherJFrame extends JFrame {
     }
 
     /**
+     * Correct word for compare
+     *
+     * @param word
+     * @return
+     */
+    protected String trimWord(String word) {
+        String str = Normalizer.normalize(word, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+        str = str.replaceAll("\\W+", "");
+
+        return str;
+    }
+
+    /**
      * Spelling correction spelling
      */
     protected void correctSpelling() {
@@ -99,7 +113,7 @@ public class LauncherJFrame extends JFrame {
         outputTextArea.setText(null);
 
         for (String word : input.split(" ")) {
-            word = word.replaceAll("\\W", "");
+            word = trimWord(word);
 
             if (!dictionary.wordExist(word)) {
                 WordTransposition transposition = new WordTransposition(word);
