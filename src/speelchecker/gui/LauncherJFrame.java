@@ -94,11 +94,11 @@ public class LauncherJFrame extends JFrame {
      * Spelling correction spelling
      */
     protected void correctSpelling() {
-        StringBuilder input = new StringBuilder(inputTextArea.getText());
+        String input = inputTextArea.getText();
 
         outputTextArea.setText(null);
 
-        for (String word : input.toString().split(" ")) {
+        for (String word : input.split(" ")) {
             word = word.replaceAll("\\W", "");
 
             if (!dictionary.wordExist(word)) {
