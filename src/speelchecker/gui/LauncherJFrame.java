@@ -94,12 +94,13 @@ public class LauncherJFrame extends JFrame {
      * Spelling correction spelling
      */
     protected void correctSpelling() {
-        String input = inputTextArea.getText();
-        String[] inputList = input.split(" ");
+        StringBuilder input = new StringBuilder(inputTextArea.getText());
 
         outputTextArea.setText(null);
 
-        for (String word : inputList) {
+        for (String word : input.toString().split(" ")) {
+            word = word.replaceAll("\\W", "");
+
             if (!dictionary.wordExist(word)) {
                 WordTransposition transposition = new WordTransposition(word);
 
