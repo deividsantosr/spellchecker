@@ -6,6 +6,7 @@
 package spellchecker.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.Normalizer;
@@ -61,6 +62,7 @@ public class LauncherJFrame extends JFrame {
     public JPanel getContentPane() {
         contentPane.setLayout(new BorderLayout());
         contentPane.setBorder(new EmptyBorder(15, 15, 15, 15));
+        contentPane.setBackground(new Color(239, 240, 241));
 
         JLabel inputLabel = new JLabel("Digite abaixo para validar a ortografia");
         inputLabel.setBorder(new EmptyBorder(0, 0, 15, 0));
@@ -72,6 +74,7 @@ public class LauncherJFrame extends JFrame {
 
         JScrollPane inputScroll = new JScrollPane(inputTextArea);
         inputScroll.setBorder(new EmptyBorder(0, 0, 10, 0));
+        inputScroll.setBackground(null);
 
         outputTextArea.setLineWrap(true);
         outputTextArea.setWrapStyleWord(true);
@@ -80,6 +83,7 @@ public class LauncherJFrame extends JFrame {
 
         JScrollPane outputScroll = new JScrollPane(outputTextArea);
         outputScroll.setBorder(new EmptyBorder(0, 10, 10, 0));
+        outputScroll.setBackground(null);
 
         contentPane.add(inputLabel, BorderLayout.PAGE_START);
         contentPane.add(inputScroll, BorderLayout.CENTER);
@@ -103,7 +107,7 @@ public class LauncherJFrame extends JFrame {
     }
 
     /**
-     * Spelling correction spelling
+     * Spelling correction
      */
     protected void correctSpelling() {
         String input = inputTextArea.getText();

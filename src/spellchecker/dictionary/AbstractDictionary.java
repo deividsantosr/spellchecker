@@ -55,7 +55,7 @@ public abstract class AbstractDictionary implements Dictionary {
      */
     @Override
     public boolean wordExist(String word) {
-        return fileContent.contains("\n" + word.toUpperCase() + "\n");
+        return fileContent.contains(System.lineSeparator() + word.toUpperCase() + System.lineSeparator());
     }
 
     /**
